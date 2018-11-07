@@ -1,20 +1,20 @@
 var animal = {
-    options: ["dog", "cat", "rabbit", "hampster", "gold fish", "bird", "turtle", "horse", "cow", "giraf", "frog", "pig", "hippopotumus", "lion", "tiger", "elephant", "bear", "monkey", "wolf", "goat", "squirrel", "duck", "mouse"],
+    options: ["Puppies", "Kittens", "Rabbit","Birds"],
     optClass: "animal",
-    optColor: "lightblue",
+    optColor: "#ce7b91",
   }
-  var celebrity = {
-    options: ["elvis persely", "al pachino", "nicolos cage", "harrison ford", "bruce lee", "Jane fonda", "hema malini", "amitabh buchchan", "rajesh khanna", "rees witherspoon", "mat demon", "leanardo di caprio"],
-    optClass: "celebrity",
-    optColor: "pink"
+  var characters = {
+    options: ["Hermione Granger","Harry Potter","Ron Weasley","Luna Lovegood"],
+    optClass: "characters",
+    optColor: "#c2efb3"
   }
   
   var movie = {
-    options: ["ghost", "god father", "Gone with the wind", "don",],
+    options: ["Harry Potter", "The Matrix", "Clueless", "Mean Girls"],
     optClass: "movie",
-    optColor: "lightcoral"
+    optColor: "#fcde9c"
   }
-  var category = { animal: animal, celebrity: celebrity, movie: movie }
+  var category = { animal: animal, characters: characters, movie: movie }
   var currentCat = animal;
   
   // Function to add select element
@@ -29,8 +29,8 @@ var animal = {
     catOptions[1].attr("value", "animal");
     catOptions[1].text("Animals");
     catOptions[2] = $("<option>");
-    catOptions[2].attr("value", "celebrity");
-    catOptions[2].text("Celebreties");
+    catOptions[2].attr("value", "characters");
+    catOptions[2].text("Harry Potter Characters");
     catOptions[3] = $("<option>");
     catOptions[3].attr("value", "movie");
     catOptions[3].text("Movies");
@@ -48,7 +48,7 @@ var animal = {
   function addMainH1() {
     var mainH1 = $("<h1>");
     mainH1.attr("id", "mainHeading");
-    mainH1.text("Animal Search");
+    mainH1.text("Search for Animals");
     $("#gifGroup").prepend(mainH1);
   }
   
@@ -64,6 +64,7 @@ var animal = {
     catFirstInput.attr("value", "");
     var catSecondInput = $("<input>");
     catSecondInput.attr("type", "submit");
+    catSecondInput.addClass("btn btn-light");
     catSecondInput.attr("id", "add-category");
     catSecondInput.attr("value", "Submit");
   
@@ -80,10 +81,10 @@ var animal = {
     for (var i = 0; i < currentCat.options.length; i++) {
       var a = $("<button>");
       a.addClass(currentCat.optClass);
+      a.addClass("btn btn-light");
       a.css("background-color", currentCat.optColor);
       a.attr("data-name", currentCat.options[i]);
       a.text(currentCat.options[i]);
-      $("#category-form").css("background-color", currentCat.optColor);
       $("#buttons-view").append(a);
       $("#category-input").val("");
     }
@@ -126,7 +127,7 @@ var animal = {
     var selectVal = document.getElementById("mySelect").value;
     var currentCatText = selectVal.charAt(0).toUpperCase() + selectVal.slice(1);
     renderButtons(currentCat);
-    $("#mainHeading").text(currentCatText + " Search");
+    $("#mainHeading").text("Search for "+currentCatText);
     $("#catAdd").text("Add " + currentCatText);
     $("#show-category").empty();
   });
@@ -140,7 +141,7 @@ var animal = {
   
   
   $(document).on("click", ".animal", displayAnimalInfo);
-  $(document).on("click", ".celebrity", displayAnimalInfo);
+  $(document).on("click", ".characters", displayAnimalInfo);
   $(document).on("click", ".movie", displayMovieInfo);
   
   //call Giphy API
